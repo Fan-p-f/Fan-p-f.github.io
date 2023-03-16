@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://example.com/2023/03/16/hexo%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/_posts%E7%9B%AE%E5%BD%95.png">
 <meta property="og:image" content="http://example.com/2023/03/16/hexo%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/%E5%9B%BE%E7%89%87.png">
 <meta property="article:published_time" content="2023-03-16T13:52:10.000Z">
-<meta property="article:modified_time" content="2023-03-16T14:13:48.078Z">
+<meta property="article:modified_time" content="2023-03-16T14:20:46.855Z">
 <meta property="article:author" content="小凡">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2023/03/16/hexo%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/_posts%E7%9B%AE%E5%BD%95.png">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          965 字
+          975 字
         
       </span>
     
@@ -286,12 +286,12 @@
 <li>每次无论 <code>hexo g</code> 或 <code>hexo s</code>，都最好先使用 <code>hexo clean</code> 清除本地缓存；</li>
 <li>页面结果以本地 <code>hexo s</code> 为准，部署后的异常大部分是线上缓存原因，在确认没有报错的情况下，等待若干时间后即可正常；</li>
 </ul>
-<h2 id="方案步骤"><a href="#方案步骤" class="headerlink" title="方案步骤"></a>方案步骤</h2><h3 id="修改站点配置文件"><a href="#修改站点配置文件" class="headerlink" title="修改站点配置文件"></a>修改站点配置文件</h3><p>修改站点配置_config.yml:将post_asset_folder: 选项设置为true（注意true前空格）</p>
+<h2 id="方案步骤"><a href="#方案步骤" class="headerlink" title="方案步骤"></a>方案步骤</h2><h3 id="修改站点配置文件"><a href="#修改站点配置文件" class="headerlink" title="修改站点配置文件"></a>修改站点配置文件</h3><p>修改站点配置<code>_config.yml</code>:将<code>post_asset_folder:</code> 选项设置为<code>true</code>（注意true前空格）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">post_asset_folder: true<br></code></pre></td></tr></table></figure>
 
-<p>设置完后，我们再次使用<code>hexo new &quot;hexo插入本地图片&quot;</code>命令来创建文章时，会在_posts下自动生成一个和文章同名的文件夹，可以用来存放数据：</p>
-<p><img src="/2023/03/16/hexo%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/_posts%E7%9B%AE%E5%BD%95.png" srcset="/img/loading.gif" lazyload alt="_posts目录">同样，也可以自己在source路径下自建image文件夹，用来存放数据，注意：必须是source路径下！否则无法识别。</p>
-<h3 id="准备照片"><a href="#准备照片" class="headerlink" title="准备照片"></a>准备照片</h3><p>将要引用的图片放到文件夹<code>hexo插入本地图片</code>下。(假设图片名为“_posts目录.png”)</p>
+<p>设置完后，我们再次使用<code>hexo new &quot;hexo插入本地图片&quot;</code>命令来创建文章时，会在<code>_posts</code>下自动生成一个和文章同名的文件夹，可以用来存放数据：</p>
+<p><img src="/2023/03/16/hexo%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/_posts%E7%9B%AE%E5%BD%95.png" srcset="/img/loading.gif" lazyload alt="_posts目录">同样，也可以自己在<code>source</code>路径下自建<code>image</code>文件夹，用来存放数据，注意：必须是source路径下！否则无法识别(不建议这样做)。</p>
+<h3 id="准备照片"><a href="#准备照片" class="headerlink" title="准备照片"></a>准备照片</h3><p>将要引用的图片放到文件夹”<code>hexo插入本地图片</code>“下。(假设图片名为“<code>_posts目录.png</code>”)</p>
 <p><img src="/2023/03/16/hexo%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/%E5%9B%BE%E7%89%87.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
 <h3 id="md文件中插入图片"><a href="#md文件中插入图片" class="headerlink" title=".md文件中插入图片"></a>.md文件中插入图片</h3><p>在.md使用如下形式引用图片</p>
 <blockquote>
@@ -304,9 +304,9 @@
 <p><strong>注意 不要使用<code>npm install hexo-asset-image --save</code>这个命令来安装,版本号不对</strong>，会导致图片依然无法识别，作者在这上面折腾了3个小时才找到原因</p>
 <h3 id="md文件名称和图片存放文件夹名称不同时"><a href="#md文件名称和图片存放文件夹名称不同时" class="headerlink" title=".md文件名称和图片存放文件夹名称不同时"></a>.md文件名称和图片存放文件夹名称不同时</h3><p>注意 重命名md文件之后记得重命名文件夹，当md文件的名称与文件夹名称不同时，映射关系以md文件名称为主。会导致src图片路径找不到</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li>检查_config.yml 文件的post_asset_folder:选项是否为true</li>
+<li>检查<code>_config.yml</code> 文件的<code>post_asset_folder:</code>选项是否为<code>true</code></li>
 <li>将要引用的图片放到文件夹<code>kk</code>下</li>
-<li>安装插件hexo-asset-image</li>
+<li>安装插件<code>hexo-asset-image</code></li>
 <li>在md中引用图片</li>
 <li>检查md文件的文件名称和图片存放文件夹名称是否相同</li>
 </ol>
