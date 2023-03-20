@@ -16,21 +16,32 @@
   <meta name="author" content="小凡">
   <meta name="keywords" content="">
   
-    <meta name="description" content="摆烂太久，天赋会被收走">
+    <meta name="description" content="HAPS 自动化测试脚本使用文档1.  自动化脚本获取为了节省配置 haps 的时间，编写了自动化执行的脚本，脚本已上传代码仓库，路径如下：自动化执行脚本 该路径下包括使用 cmake 编译 bootrom 代码的相关配置文件以及在 haps 上自动化执行脚本 hapsTest.py 。 2.  配置脚本文件为了能在自己的路径中使用，需要配置脚本中的相关路径，有两种方案： 方案一：修改脚本文件需要">
 <meta property="og:type" content="article">
-<meta property="og:title" content="my new post">
-<meta property="og:url" content="http://example.com/2023/03/16/my-new-post/index.html">
+<meta property="og:title" content="haps自动化脚本">
+<meta property="og:url" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="F.Y &amp; 博客">
-<meta property="og:description" content="摆烂太久，天赋会被收走">
+<meta property="og:description" content="HAPS 自动化测试脚本使用文档1.  自动化脚本获取为了节省配置 haps 的时间，编写了自动化执行的脚本，脚本已上传代码仓库，路径如下：自动化执行脚本 该路径下包括使用 cmake 编译 bootrom 代码的相关配置文件以及在 haps 上自动化执行脚本 hapsTest.py 。 2.  配置脚本文件为了能在自己的路径中使用，需要配置脚本中的相关路径，有两种方案： 方案一：修改脚本文件需要">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-16T03:18:52.000Z">
-<meta property="article:modified_time" content="2023-03-16T03:18:52.441Z">
+<meta property="og:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/1.png">
+<meta property="og:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/2.png">
+<meta property="og:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/3.png">
+<meta property="og:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/4.png">
+<meta property="og:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/7.png">
+<meta property="og:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/8.png">
+<meta property="og:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/9.png">
+<meta property="og:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/5.png">
+<meta property="og:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/6.png">
+<meta property="article:published_time" content="2022-03-20T03:01:53.000Z">
+<meta property="article:modified_time" content="2023-03-20T03:31:20.823Z">
 <meta property="article:author" content="小凡">
+<meta property="article:tag" content="仿真环境">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/1.png">
   
   
   
-  <title>my new post - F.Y &amp; 博客</title>
+  <title>haps自动化脚本 - F.Y &amp; 博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="my new post"></span>
+            <span id="subtitle" data-typed-text="haps自动化脚本"></span>
           
         </div>
 
@@ -207,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-16 11:18" pubdate>
-          2023年3月16日 上午
+        <time datetime="2022-03-20 11:01" pubdate>
+          2022年3月20日 上午
         </time>
       </span>
     
@@ -219,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          2k 字
         
       </span>
     
@@ -230,7 +241,7 @@
         
         
         
-          1 分钟
+          17 分钟
         
       </span>
     
@@ -268,12 +279,98 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">my new post</h1>
+            <h1 style="display: none">haps自动化脚本</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h1 id="HAPS-自动化测试脚本使用文档"><a href="#HAPS-自动化测试脚本使用文档" class="headerlink" title="HAPS 自动化测试脚本使用文档"></a>HAPS 自动化测试脚本使用文档</h1><h2 id="1-自动化脚本获取"><a href="#1-自动化脚本获取" class="headerlink" title="1.  自动化脚本获取"></a>1.  自动化脚本获取</h2><p>为了节省配置 haps 的时间，编写了自动化执行的脚本，脚本已上传代码仓库，路径如下：<a target="_blank" rel="noopener" href="http://gerrit.eswin.cn/c/eswin/bootrom/+/11228">自动化执行脚本</a></p>
+<p>该路径下包括使用 cmake 编译 bootrom 代码的相关配置文件以及在 haps 上自动化执行脚本 hapsTest.py 。</p>
+<h2 id="2-配置脚本文件"><a href="#2-配置脚本文件" class="headerlink" title="2.  配置脚本文件"></a>2.  配置脚本文件</h2><p>为了能在自己的路径中使用，需要配置脚本中的相关路径，有两种方案：</p>
+<h3 id="方案一：修改脚本文件"><a href="#方案一：修改脚本文件" class="headerlink" title="方案一：修改脚本文件"></a>方案一：修改脚本文件</h3><p>需要修改的路径见图所示：</p>
+<p><img src="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/1.png" srcset="/img/loading.gif" lazyload> </p>
+<p>将其中的路径配置成自己的路径。</p>
+<h3 id="方案二：按脚本配置路径"><a href="#方案二：按脚本配置路径" class="headerlink" title="方案二：按脚本配置路径"></a>方案二：按脚本配置路径</h3><p>将代码路径配置为如下结构：</p>
+<p><img src="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/2.png" srcset="/img/loading.gif" lazyload> </p>
+<p>其中：</p>
+<ul>
+<li>autoflow 为自动化脚本的路径</li>
+<li>binary 为bootrom二进制文件路径</li>
+<li>envset 为在haps 上测试需要的环境。</li>
+</ul>
+<p>主要是 envset 文件夹的设置，需要到 &#x2F;opt 文件夹下将openocd 相关文件拷贝过来，然后建立一个riscv64_unknown_elf_toolchain 的软链接，用来打开gdb使用。配置完这些，就可以开始我们的自动化haps测试了。</p>
+<p><strong>note</strong>:  自动化脚本中gdb的执行过程中打了一些断点，若编译的主函数不是btr_main.c，根据需要注释掉脚本中的断点。</p>
+<h2 id="3-编译-bootrom"><a href="#3-编译-bootrom" class="headerlink" title="3.  编译 bootrom"></a>3.  编译 bootrom</h2><p>本文的测试代码在 btr_main.c 中实现，有两种编译方法:</p>
+<h3 id="方案一：使用-makefile-进行编译"><a href="#方案一：使用-makefile-进行编译" class="headerlink" title="方案一：使用 makefile 进行编译"></a>方案一：使用 makefile 进行编译</h3><p>该方法是原始代码仓库的编译方法，如果要在 haps 上运行，需要修改链接文件保证能够正常运行，到<a target="_blank" rel="noopener" href="http://gerrit.eswin.cn/c/eswin/bootrom/+/11249">该目录下</a>获取 patch，打到自己的 bootrom 代码里。接下来，</p>
+<p>执行步骤如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /bootrom<br>make clean<br>make PLATFORM=fpga<br></code></pre></td></tr></table></figure>
+
+<p>若没有错误，编译后如下路径将产生如下三个文件：</p>
+<p><img src="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/3.png" srcset="/img/loading.gif" lazyload> </p>
+<p>将其中的 btr.elf 拷贝到成都服务器中我们刚刚创建的 binary 文件夹中即可。其中拷贝的方法后面有介绍。</p>
+<h3 id="方案二：使用-cmake-编译"><a href="#方案二：使用-cmake-编译" class="headerlink" title="方案二：使用 cmake 编译"></a>方案二：使用 cmake 编译</h3><p>一样，首先去该路径下将 &#x2F;haps_verify_tools 文件夹下载下来<a target="_blank" rel="noopener" href="http://gerrit.eswin.cn/c/eswin/bootrom/+/11228">编译工具</a>，然后将&#x2F;haps_verify_tools 文件夹放在 &#x2F;bootrom 下，在 &#x2F;haps_verify_tools 文件夹下打开终端执行如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir build<br>cd ./build<br>rm -rf *<br>cmake -Dtarget_platform=fpga ..<br>make<br></code></pre></td></tr></table></figure>
+
+<p>可以将这些命令写成一个脚本，直接一键执行，脚本文件如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>echo &quot;start build...&quot;<br>cd ./build<br>rm -rf *<br>cmake -Dtarget_platform=fpga ..<br>make<br><span class="hljs-meta prompt_">#</span><span class="language-bash">scp /home/fan/workspace/bootrom/haps_verify/build/btr.elf e0005153@10.10.130.211:/home/e0005153/workspace/win2030/binary</span><br></code></pre></td></tr></table></figure>
+
+<p>若没有错误，编译完将在build文件夹下产生 btr.elf 文件。</p>
+<h2 id="4-传送文件到服务器"><a href="#4-传送文件到服务器" class="headerlink" title="4.  传送文件到服务器"></a>4.  传送文件到服务器</h2><p>我们可以尝试如下方法;</p>
+<ul>
+<li><p>使用 scp 命令，从本地发送到服务器，参考命令如下（由于安全限制，此方法本人已不可用）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">scp 二进制文件路径/btr.elf 服务器账号@10.10.130.211:/home/e0005153/workspace/win2030/binary<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>使用 ftp 中转</p>
+<ul>
+<li><p>本地主机以及服务器分别安装 filezilla</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get install filezilla<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>登录账号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">CRI：地址：10.100.130.32<br>端口号：2123<br>上传账号：cri02 密码CRI888888<br>下载账号：cri01 密码cri888888<br><span class="hljs-meta prompt_">#</span><span class="language-bash">尽量在ftp中创建自己的文件夹，保证不干扰他人的文件查找</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>登录后界面如下：左边为本地目录，右边为 ftp 目录。</p>
+<p><img src="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/4.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-haps-上的自动化测试"><a href="#5-haps-上的自动化测试" class="headerlink" title="5.  haps 上的自动化测试"></a>5.  haps 上的自动化测试</h2><p>我们登录成都服务器（需要提前开通权限），其中很多配置已在 &#x2F;opt 中配置好了，我们只需要去自己的目录执行即可，切换到 <strong>第二步</strong> 中 hapsTest.py 的存放路径，执行如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo python  hapsTest.py<br></code></pre></td></tr></table></figure>
+
+<p>若成功，将会打开三个终端窗口，分别为 gdb 、minicom 、openpcd。</p>
+<ul>
+<li><strong>gdb</strong></li>
+</ul>
+<p><img src="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/7.png" srcset="/img/loading.gif" lazyload> </p>
+<ul>
+<li><strong>minicom</strong></li>
+</ul>
+<p><img src="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/8.png" srcset="/img/loading.gif" lazyload> </p>
+<ul>
+<li><strong>openocd</strong></li>
+</ul>
+<p><img src="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/9.png" srcset="/img/loading.gif" lazyload> </p>
+<p>接下来就在 gdb 中进行调试，在 minicom 中观察输出结果。</p>
+<p><strong>note1</strong>:  若出现如下提示：</p>
+<p><img src="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/5.png" srcset="/img/loading.gif" lazyload> </p>
+<p>请找相关人员开通 sudo 权限。</p>
+<p><strong>note2</strong>:  若出现openpcd无法运行的情况：</p>
+<p><img src="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/6.png" srcset="/img/loading.gif" lazyload> </p>
+<p>先使用命令看一下是否有人占用：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -ef |grep openocd<br></code></pre></td></tr></table></figure>
+
+<p>若除了自己的账号有别人在占用，则需要沟通使用时间，不允许同时两个人使用；</p>
+<p>若没有别人再用，则可能haps出现里逻辑错误，需要找相关人员重新刷新一下bitfile 才能正常使用。</p>
+<p><strong>note3</strong>:  若无法打开minicom，使用如下命令查看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -aux|grep minicom<br></code></pre></td></tr></table></figure>
+
+<p>若有人占用，但并未使用，可以强制关闭：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kill -9 PID<br></code></pre></td></tr></table></figure>
+
+<p>当前版本需要使用usb2接口才能正常使用 minicom。</p>
+
                 
               </div>
             
@@ -281,6 +378,13 @@
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/">#仿真环境</a>
+      
+    </div>
   
 </div>
 
@@ -290,8 +394,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>my new post</div>
-      <div>http://example.com/2023/03/16/my-new-post/</div>
+      <div>haps自动化脚本</div>
+      <div>http://example.com/2022/03/20/haps自动化脚本/</div>
     </div>
     <div class="license-meta">
       
@@ -303,7 +407,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月16日</div>
+          <div>2022年3月20日</div>
         </div>
       
       
@@ -335,9 +439,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/16/%E5%B8%B8%E7%94%A8git%E5%91%BD%E4%BB%A4/" title="常用git命令">
+                      <a href="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/" title="sel4编译于运行">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">常用git命令</span>
+                        <span class="hidden-mobile">sel4编译于运行</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -345,8 +449,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/16/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" title="EDA环境部署">
+                        <span class="hidden-mobile">EDA环境部署</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

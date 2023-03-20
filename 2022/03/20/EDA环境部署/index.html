@@ -16,32 +16,33 @@
   <meta name="author" content="小凡">
   <meta name="keywords" content="">
   
-    <meta name="description" content="HAPS 自动化测试脚本使用文档1.  自动化脚本获取为了节省配置 haps 的时间，编写了自动化执行的脚本，脚本已上传代码仓库，路径如下：自动化执行脚本 该路径下包括使用 cmake 编译 bootrom 代码的相关配置文件以及在 haps 上自动化执行脚本 hapsTest.py 。 2.  配置脚本文件为了能在自己的路径中使用，需要配置脚本中的相关路径，有两种方案： 方案一：修改脚本文件需要">
+    <meta name="description" content="1. EDA 环境部署接下来的操作都是在登录的 ETX 上的虚拟机下执行。  首先使用 groups 命令查看是否在 IBU、WIN2030、usersg 这三个 linux group 中，如果有缺少，请联系 IT 加入对应 group（目前IT对应责任人为 白晨 ) 1[e0005153@login01 ~]$ groups   结果对应如下：     在如下目录建立自己的工号的根目录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="haps自动化脚本">
-<meta property="og:url" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:title" content="EDA环境部署">
+<meta property="og:url" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/index.html">
 <meta property="og:site_name" content="F.Y &amp; 博客">
-<meta property="og:description" content="HAPS 自动化测试脚本使用文档1.  自动化脚本获取为了节省配置 haps 的时间，编写了自动化执行的脚本，脚本已上传代码仓库，路径如下：自动化执行脚本 该路径下包括使用 cmake 编译 bootrom 代码的相关配置文件以及在 haps 上自动化执行脚本 hapsTest.py 。 2.  配置脚本文件为了能在自己的路径中使用，需要配置脚本中的相关路径，有两种方案： 方案一：修改脚本文件需要">
+<meta property="og:description" content="1. EDA 环境部署接下来的操作都是在登录的 ETX 上的虚拟机下执行。  首先使用 groups 命令查看是否在 IBU、WIN2030、usersg 这三个 linux group 中，如果有缺少，请联系 IT 加入对应 group（目前IT对应责任人为 白晨 ) 1[e0005153@login01 ~]$ groups   结果对应如下：     在如下目录建立自己的工号的根目录">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/1.png">
-<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/2.png">
-<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/3.png">
-<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/4.png">
-<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/7.png">
-<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/8.png">
-<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/9.png">
-<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/5.png">
-<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/6.png">
-<meta property="article:published_time" content="2023-03-20T03:01:53.000Z">
-<meta property="article:modified_time" content="2023-03-20T03:22:04.786Z">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/1.png">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/2-1679282153070-1.png">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/3-1679282188749-3.png">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/4-1679282196846-5.png">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/5-1679282203013-7.png">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2//6.png">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2//8.png">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2//9.png">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/10-1679282250141-9.png">
+<meta property="og:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/12-1679282256998-11.png">
+<meta property="article:published_time" content="2022-03-20T03:01:30.000Z">
+<meta property="article:modified_time" content="2023-03-20T03:31:11.459Z">
 <meta property="article:author" content="小凡">
 <meta property="article:tag" content="仿真环境">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/1.png">
+<meta name="twitter:image" content="http://example.com/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/1.png">
   
   
   
-  <title>haps自动化脚本 - F.Y &amp; 博客</title>
+  <title>EDA环境部署 - F.Y &amp; 博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -207,7 +208,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="haps自动化脚本"></span>
+            <span id="subtitle" data-typed-text="EDA环境部署"></span>
           
         </div>
 
@@ -218,8 +219,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-20 11:01" pubdate>
-          2023年3月20日 上午
+        <time datetime="2022-03-20 11:01" pubdate>
+          2022年3月20日 上午
         </time>
       </span>
     
@@ -230,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.9k 字
         
       </span>
     
@@ -241,7 +242,7 @@
         
         
         
-          17 分钟
+          25 分钟
         
       </span>
     
@@ -279,97 +280,105 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">haps自动化脚本</h1>
+            <h1 style="display: none">EDA环境部署</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="HAPS-自动化测试脚本使用文档"><a href="#HAPS-自动化测试脚本使用文档" class="headerlink" title="HAPS 自动化测试脚本使用文档"></a>HAPS 自动化测试脚本使用文档</h1><h2 id="1-自动化脚本获取"><a href="#1-自动化脚本获取" class="headerlink" title="1.  自动化脚本获取"></a>1.  自动化脚本获取</h2><p>为了节省配置 haps 的时间，编写了自动化执行的脚本，脚本已上传代码仓库，路径如下：<a target="_blank" rel="noopener" href="http://gerrit.eswin.cn/c/eswin/bootrom/+/11228">自动化执行脚本</a></p>
-<p>该路径下包括使用 cmake 编译 bootrom 代码的相关配置文件以及在 haps 上自动化执行脚本 hapsTest.py 。</p>
-<h2 id="2-配置脚本文件"><a href="#2-配置脚本文件" class="headerlink" title="2.  配置脚本文件"></a>2.  配置脚本文件</h2><p>为了能在自己的路径中使用，需要配置脚本中的相关路径，有两种方案：</p>
-<h3 id="方案一：修改脚本文件"><a href="#方案一：修改脚本文件" class="headerlink" title="方案一：修改脚本文件"></a>方案一：修改脚本文件</h3><p>需要修改的路径见图所示：</p>
-<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/1.png" srcset="/img/loading.gif" lazyload> </p>
-<p>将其中的路径配置成自己的路径。</p>
-<h3 id="方案二：按脚本配置路径"><a href="#方案二：按脚本配置路径" class="headerlink" title="方案二：按脚本配置路径"></a>方案二：按脚本配置路径</h3><p>将代码路径配置为如下结构：</p>
-<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/2.png" srcset="/img/loading.gif" lazyload> </p>
-<p>其中：</p>
+                <h2 id="1-EDA-环境部署"><a href="#1-EDA-环境部署" class="headerlink" title="1. EDA 环境部署"></a>1. EDA 环境部署</h2><p>接下来的操作都是在登录的 ETX 上的虚拟机下执行。</p>
 <ul>
-<li>autoflow 为自动化脚本的路径</li>
-<li>binary 为bootrom二进制文件路径</li>
-<li>envset 为在haps 上测试需要的环境。</li>
-</ul>
-<p>主要是 envset 文件夹的设置，需要到 &#x2F;opt 文件夹下将openocd 相关文件拷贝过来，然后建立一个riscv64_unknown_elf_toolchain 的软链接，用来打开gdb使用。配置完这些，就可以开始我们的自动化haps测试了。</p>
-<p><strong>note</strong>:  自动化脚本中gdb的执行过程中打了一些断点，若编译的主函数不是btr_main.c，根据需要注释掉脚本中的断点。</p>
-<h2 id="3-编译-bootrom"><a href="#3-编译-bootrom" class="headerlink" title="3.  编译 bootrom"></a>3.  编译 bootrom</h2><p>本文的测试代码在 btr_main.c 中实现，有两种编译方法:</p>
-<h3 id="方案一：使用-makefile-进行编译"><a href="#方案一：使用-makefile-进行编译" class="headerlink" title="方案一：使用 makefile 进行编译"></a>方案一：使用 makefile 进行编译</h3><p>该方法是原始代码仓库的编译方法，如果要在 haps 上运行，需要修改链接文件保证能够正常运行，到<a target="_blank" rel="noopener" href="http://gerrit.eswin.cn/c/eswin/bootrom/+/11249">该目录下</a>获取 patch，打到自己的 bootrom 代码里。接下来，</p>
-<p>执行步骤如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /bootrom<br>make clean<br>make PLATFORM=fpga<br></code></pre></td></tr></table></figure>
+<li><p>首先使用 <code>groups</code> 命令查看是否在 <code>IBU、WIN2030、usersg</code> 这三个 linux group 中，如果有缺少，请联系 IT 加入对应 group（目前IT对应责任人为 白晨 )</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">[e0005153@login01 ~]$ groups<br></code></pre></td></tr></table></figure>
 
-<p>若没有错误，编译后如下路径将产生如下三个文件：</p>
-<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/3.png" srcset="/img/loading.gif" lazyload> </p>
-<p>将其中的 btr.elf 拷贝到成都服务器中我们刚刚创建的 binary 文件夹中即可。其中拷贝的方法后面有介绍。</p>
-<h3 id="方案二：使用-cmake-编译"><a href="#方案二：使用-cmake-编译" class="headerlink" title="方案二：使用 cmake 编译"></a>方案二：使用 cmake 编译</h3><p>一样，首先去该路径下将 &#x2F;haps_verify_tools 文件夹下载下来<a target="_blank" rel="noopener" href="http://gerrit.eswin.cn/c/eswin/bootrom/+/11228">编译工具</a>，然后将&#x2F;haps_verify_tools 文件夹放在 &#x2F;bootrom 下，在 &#x2F;haps_verify_tools 文件夹下打开终端执行如下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir build<br>cd ./build<br>rm -rf *<br>cmake -Dtarget_platform=fpga ..<br>make<br></code></pre></td></tr></table></figure>
-
-<p>可以将这些命令写成一个脚本，直接一键执行，脚本文件如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>echo &quot;start build...&quot;<br>cd ./build<br>rm -rf *<br>cmake -Dtarget_platform=fpga ..<br>make<br><span class="hljs-meta prompt_">#</span><span class="language-bash">scp /home/fan/workspace/bootrom/haps_verify/build/btr.elf e0005153@10.10.130.211:/home/e0005153/workspace/win2030/binary</span><br></code></pre></td></tr></table></figure>
-
-<p>若没有错误，编译完将在build文件夹下产生 btr.elf 文件。</p>
-<h2 id="4-传送文件到服务器"><a href="#4-传送文件到服务器" class="headerlink" title="4.  传送文件到服务器"></a>4.  传送文件到服务器</h2><p>我们可以尝试如下方法;</p>
-<ul>
-<li><p>使用 scp 命令，从本地发送到服务器，参考命令如下（由于安全限制，此方法本人已不可用）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">scp 二进制文件路径/btr.elf 服务器账号@10.10.130.211:/home/e0005153/workspace/win2030/binary<br></code></pre></td></tr></table></figure>
+<p> 结果对应如下：</p>
+<p><img src="/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/1.png" srcset="/img/loading.gif" lazyload>  </p>
 </li>
-<li><p>使用 ftp 中转</p>
-<ul>
-<li><p>本地主机以及服务器分别安装 filezilla</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get install filezilla<br></code></pre></td></tr></table></figure>
+<li><p>在如下目录建立自己的工号的根目录</p>
+<p><img src="/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/2-1679282153070-1.png" srcset="/img/loading.gif" lazyload> </p>
 </li>
-<li><p>登录账号</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">CRI：地址：10.100.130.32<br>端口号：2123<br>上传账号：cri02 密码CRI888888<br>下载账号：cri01 密码cri888888<br><span class="hljs-meta prompt_">#</span><span class="language-bash">尽量在ftp中创建自己的文件夹，保证不干扰他人的文件查找</span><br></code></pre></td></tr></table></figure>
+<li><p>在 <code>.cshrc</code> 中添加如下 <code>alias</code></p>
+<p><code>.cshrc</code> 文件可以在个人用户目录下打开，若没有可以创建一个（PS：个人经验）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">alias setup_win2030 &#x27;svn co http://svn.eswin.cn/IBU/WIN_2030/&#x27;<br>alias setup_win2030_dv &#x27;mkdir WIN_2030; SVN co http://svn.eswin.cn/IBU/WIN_2030/asic; svn co http://svn.eswin.cn/IBU/WIN_2030/script; svn co http://svn.eswin.cn/IBU/WIN_2030/setup&#x27;<br>alias sm &quot;source sourceme&quot;<br></code></pre></td></tr></table></figure>
 
 
+</li>
+<li><p>checkout 环境仓库</p>
+<p>在前面创建的<em>user id</em>目录下，根据自己需要，创建 <em>workspace</em> 根目录名称（命名随意，本文为 <em>workspace1</em>）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir workspace1<br>cd workspace1<br></code></pre></td></tr></table></figure>
 
-<p>登录后界面如下：左边为本地目录，右边为 ftp 目录。</p>
-<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/4.png" srcset="/img/loading.gif" lazyload></p>
+<p>该目录主要是用来下拉 SVN 上的环境，此后的环境部署都在这个文件夹下进行。</p>
+<p>由于 SVN 库上的 <em>validation</em>目录文件较多，且 DE、DV 人员通常用不到 <em>validation</em> 相关目录，建议 DE、DV 不要 checkout <em>validation</em> 目录。</p>
+<p>以下为 checkout 的方法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">svn co http:<span class="hljs-comment">//svn.eswin.cn/IBU/WIN_2030/asic</span><br>svn co http:<span class="hljs-comment">//svn.eswin.cn/IBU/WIN_2030/script</span><br>svn co http:<span class="hljs-comment">//svn.eswin.cn/IBU/WIN_2030/setup</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>note:</strong>  在 checkout 其中的 <em>asic</em> 目录的时候，可能花费的时间较长，需要慢慢等待，若同步的不完全，会造成环境搭建失败，如果显示服务器断开链接或中断，要在 <em>asic</em> 目录下使用命令： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">svn cleanup<br>svn up<br></code></pre></td></tr></table></figure>
+
+<p><code>svn cleanup</code>来清空， <code>svn up</code> 把文件下载完全。</p>
+</li>
+<li><p>配置 <strong>evfm</strong>、<strong>workspace</strong> 以及<strong>环境变量</strong></p>
+<p>进入 <em>WIN_2030&#x2F;setup</em> 目录，执行命令 <code>source sourceme</code> (一定要在 <em>setup</em> 目录下执行！）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd setup<br>ls <br>source sourceme<br></code></pre></td></tr></table></figure>
+
+<p><strong>note</strong>: 执行完成后，要按两下 <strong>Enter</strong> 键才能完成</p>
+<p>执行结果如下(部分显示结果)：</p>
+<p><img src="/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/3-1679282188749-3.png" srcset="/img/loading.gif" lazyload> </p>
+<p>与平时在 Linux 中配置环境变量类似，此次环境变量的配置，只在这一个终端内有效，所以接下来的执行都要在这个终端内完成，为了便于操作，建议另开一个终端使用 <code>pwd</code> 命令用来查找路径，方便跳转。</p>
+<p>至此，EDA 环境的部署已经完成。若有其他配置问题，参照 <a target="_blank" rel="noopener" href="http://confluence.eswin.com/display/IBU/Setup+WIN2030+Workspace">Setup WIN2030 Workspace - IBU - Confluence (eswin.com)</a>。</p>
 </li>
 </ul>
+<h2 id="2-使用-EDA-进行仿真"><a href="#2-使用-EDA-进行仿真" class="headerlink" title="2.  使用 EDA 进行仿真"></a>2.  使用 EDA 进行仿真</h2><p>使用 EDA 测试有两种方式，一种是直接上传源代码，一种为上传编译好的 bin 文件，接下来分别进行介绍</p>
+<h4 id="2-1-添加-C-用例"><a href="#2-1-添加-C-用例" class="headerlink" title="2.1  添加 C 用例"></a>2.1  添加 C 用例</h4><p>在这种情况中需要关注三个目录&#x2F;文件，分别为：C 用例的存放路径；regress&#x2F;test_list&#x2F;ctest.tl 文件；sim.mk 文件</p>
+<ul>
+<li><p>需要上传的 C 代码存放在位置：</p>
+<p>在以下目录中建立源代码的目录</p>
+<p><img src="/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/4-1679282196846-5.png" srcset="/img/loading.gif" lazyload> </p>
+<p>例如要建立 smmu 的测试 case 的存放路径</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">cd /projects/IBU/WIN_2030/e0005153/worksapce1/asic/dv/tbs/st/top/tc/ctest<br>mkdir smmu<br></code></pre></td></tr></table></figure>
+
+<p>由于 ETX 的限制，传输文件需要借助 FTP 来中转，具体的操作参照<a href="./pic/%E5%8C%97%E4%BA%ACIC%E8%AE%BE%E8%AE%A1%E5%B9%B3%E5%8F%B0FTP%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.pdf">FTP使用教程</a>，上传代码后，就需要对我们的代码进行编译，其实是环境加代码一块进行了编译。</p>
+</li>
+<li><p>设置 ctest.tl 文件</p>
+<p>ctest.tl 文件的目录如下：</p>
+<p><img src="/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/5-1679282203013-7.png" srcset="/img/loading.gif" lazyload> </p>
+<p>打开 ctest.tl 文件，参照如下命令，在其中添加编译命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">u84_hello_world \<br>-pre_sim_opts+=&quot;bash build_u84.sh -s $&#123;ST_TOP&#125;/tc/ctest/u84/hello_world.c&quot; \<br>-test_case=cpu_test<br></code></pre></td></tr></table></figure>
+
+<p><strong>note</strong>：注意在行后添加 <strong>“\”</strong> </p>
+<ul>
+<li>第一行用例名称，要求唯一，不与其他用例名称重名。</li>
+<li>第二行为具体的编译命令，<code>-pre_sim_opts</code> 则是调用编译工具生成对应的 <em>bin</em> 文件，所写的 <em>c code</em> 如果是跑在 u84上，则调用 <code>build_u84.sh</code>；如果跑在 e21上，则调用 <code>build_e21.sh</code>； 如果两个 core 都要跑程序，则指定两次 <code>-pre_sim_opts</code> 分别调用 <code>build_u84.sh</code> 和 <code>build_e21.sh</code> 编译各自的case 源文件</li>
+<li>第三行 <code>-test_case=cpu_test</code> 保持不变，所有case都按照这种方式写即可。</li>
+<li>如果编译的文件不止一个，则在代码路径上添加单引号将这些文件引用起来，使其看起来是一个项，如 <code>“build_u84.sh –s ‘1.c 2.c 3.c&#39;&quot;</code>。</li>
+</ul>
+</li>
+<li><p>执行 <code>evfm</code> 命令进行编译</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">evfm -regr <span class="hljs-string">&quot;top.sl&#123;ctest[u84_hello_word,e21_hello_word]&#125;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>等待执行结果，若成功执行后会出现以下结果：</p>
+<img src="EDA环境部署//6.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;"> 
+
+<p>执行完成后在以下路径会产生如下文件：</p>
+<img src="EDA环境部署//8.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
+
+<p>该目录为芯片 <code>rtl+tb</code> 环境的编译目录，上一层文件夹是以编译时间命名的，两个 <em>default</em> 开头的 <em>.log</em> 文件就是就是<code>evfm</code>命令跑用例时产生的，如果跑的过程有出错的情况，就来查看这 <em>.log</em> 文件。</p>
+<p>根据在上面 <em>ctest.tl</em> 文件中填写的用例名称，进入对应目录，也就是在 <em>scpu_hello_world.0.0</em> 文件夹下，有我们需要的 sim.mk 文件。</p>
+<img src="EDA环境部署//9.png" srcset="/img/loading.gif" lazyload style="zoom:80%;">
+
+
+
+<p><code>evfm</code> 命令会编译环境和 C 代码，其实环境只需要编译一次，后续不需要再次使用 <code>evfm</code> 命令。</p>
+<p>当我们需要再次编译新的测试 case 时，在前面的步骤执行完以后，可以修改 sim.mk 文件，在其中直接添加编译命令，例如：</p>
+<p><img src="/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/10-1679282250141-9.png" srcset="/img/loading.gif" lazyload> </p>
+<p>我们在其中添加编译 uart 的测试用例，然后在终端中跳转到该文件夹下，使用 <code>sim</code> 命令进行仿真。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /simulation/IBU/WIN_2030/e0005153/workspace1/win2030/sim/top.2021.12.01.16.03.48/ctest/scpu_hello_world.0.0<br>sim<br></code></pre></td></tr></table></figure>
+
+<p>等待仿真结果。</p>
+<h3 id="2-2-直接添加-bin-文件"><a href="#2-2-直接添加-bin-文件" class="headerlink" title="2.2  直接添加 bin 文件"></a>2.2  直接添加 bin 文件</h3><p>将编译好的 .bin 文件改成 .dat 类型的文件，并将目录直接添加到 sim.mk 文件中，即可直接进行仿真。见下图：</p>
+<p><img src="/2022/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/12-1679282256998-11.png" srcset="/img/loading.gif" lazyload>  </p>
+<p>最后一行语句中表示将 <code>uart.dat</code> 添加到 <code>scpu.dat</code> 中，然后使用 <code>sim</code> 命令即可进行仿真。</p>
 </li>
 </ul>
-<h2 id="5-haps-上的自动化测试"><a href="#5-haps-上的自动化测试" class="headerlink" title="5.  haps 上的自动化测试"></a>5.  haps 上的自动化测试</h2><p>我们登录成都服务器（需要提前开通权限），其中很多配置已在 &#x2F;opt 中配置好了，我们只需要去自己的目录执行即可，切换到 <strong>第二步</strong> 中 hapsTest.py 的存放路径，执行如下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo python  hapsTest.py<br></code></pre></td></tr></table></figure>
-
-<p>若成功，将会打开三个终端窗口，分别为 gdb 、minicom 、openpcd。</p>
-<ul>
-<li><strong>gdb</strong></li>
-</ul>
-<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/7.png" srcset="/img/loading.gif" lazyload> </p>
-<ul>
-<li><strong>minicom</strong></li>
-</ul>
-<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/8.png" srcset="/img/loading.gif" lazyload> </p>
-<ul>
-<li><strong>openocd</strong></li>
-</ul>
-<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/9.png" srcset="/img/loading.gif" lazyload> </p>
-<p>接下来就在 gdb 中进行调试，在 minicom 中观察输出结果。</p>
-<p><strong>note1</strong>:  若出现如下提示：</p>
-<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/5.png" srcset="/img/loading.gif" lazyload> </p>
-<p>请找相关人员开通 sudo 权限。</p>
-<p><strong>note2</strong>:  若出现openpcd无法运行的情况：</p>
-<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/6.png" srcset="/img/loading.gif" lazyload> </p>
-<p>先使用命令看一下是否有人占用：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -ef |grep openocd<br></code></pre></td></tr></table></figure>
-
-<p>若除了自己的账号有别人在占用，则需要沟通使用时间，不允许同时两个人使用；</p>
-<p>若没有别人再用，则可能haps出现里逻辑错误，需要找相关人员重新刷新一下bitfile 才能正常使用。</p>
-<p><strong>note3</strong>:  若无法打开minicom，使用如下命令查看：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -aux|grep minicom<br></code></pre></td></tr></table></figure>
-
-<p>若有人占用，但并未使用，可以强制关闭：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kill -9 PID<br></code></pre></td></tr></table></figure>
-
-<p>当前版本需要使用usb2接口才能正常使用 minicom。</p>
 
                 
               </div>
@@ -394,8 +403,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>haps自动化脚本</div>
-      <div>http://example.com/2023/03/20/haps自动化脚本/</div>
+      <div>EDA环境部署</div>
+      <div>http://example.com/2022/03/20/EDA环境部署/</div>
     </div>
     <div class="license-meta">
       
@@ -407,7 +416,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月20日</div>
+          <div>2022年3月20日</div>
         </div>
       
       
@@ -439,21 +448,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/" title="sel4编译于运行">
+                      <a href="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/" title="haps自动化脚本">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">sel4编译于运行</span>
+                        <span class="hidden-mobile">haps自动化脚本</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2023/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" title="EDA环境部署">
-                        <span class="hidden-mobile">EDA环境部署</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>

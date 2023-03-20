@@ -19,26 +19,26 @@
     <meta name="description" content="seL4的编译与运行本文档描述了基于spike平台下的seL4的编译与运行，包括环境的搭建以及相关依赖的安装。 1  环境配置若使用常规的本地系统进行环境配置，比较繁琐，为此本文采用 Docker 将依赖性与机器隔离，进行依赖性的管理。 1.1  Ubuntu Docker安装 使用官方安装脚本自动安装  安装命令如下： 1curl -fsSL https:&#x2F;&#x2F;get.docker.com | b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sel4编译于运行">
-<meta property="og:url" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/index.html">
+<meta property="og:url" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/index.html">
 <meta property="og:site_name" content="F.Y &amp; 博客">
 <meta property="og:description" content="seL4的编译与运行本文档描述了基于spike平台下的seL4的编译与运行，包括环境的搭建以及相关依赖的安装。 1  环境配置若使用常规的本地系统进行环境配置，比较繁琐，为此本文采用 Docker 将依赖性与机器隔离，进行依赖性的管理。 1.1  Ubuntu Docker安装 使用官方安装脚本自动安装  安装命令如下： 1curl -fsSL https:&#x2F;&#x2F;get.docker.com | b">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/1.jpg">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/2.jpg">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/3.jpg">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/5.jpg">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/4.jpg">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/6.png">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/10.png">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/7.jpg">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/8.jpg">
-<meta property="og:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/9.png">
-<meta property="article:published_time" content="2023-03-20T03:02:17.000Z">
-<meta property="article:modified_time" content="2023-03-20T03:29:59.627Z">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/1.jpg">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/2.jpg">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/3.jpg">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/5.jpg">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/4.jpg">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/6.png">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/10.png">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/7.jpg">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/8.jpg">
+<meta property="og:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/9.png">
+<meta property="article:published_time" content="2022-03-20T03:02:17.000Z">
+<meta property="article:modified_time" content="2023-03-20T03:32:01.174Z">
 <meta property="article:author" content="小凡">
 <meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/1.jpg">
+<meta name="twitter:image" content="http://example.com/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/1.jpg">
   
   
   
@@ -219,8 +219,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-20 11:02" pubdate>
-          2023年3月20日 上午
+        <time datetime="2022-03-20 11:02" pubdate>
+          2022年3月20日 上午
         </time>
       </span>
     
@@ -335,7 +335,7 @@
 <h3 id="1-3-make安装"><a href="#1-3-make安装" class="headerlink" title="1.3   make安装"></a>1.3   make安装</h3><p>使用命令：</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> make<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-4-使用-Docker-管理-seL4-Camkes-和-L4v-依赖性"><a href="#1-4-使用-Docker-管理-seL4-Camkes-和-L4v-依赖性" class="headerlink" title="1.4  使用 Docker 管理 seL4, Camkes, 和 L4v 依赖性"></a>1.4  使用 Docker 管理 seL4, Camkes, 和 L4v 依赖性</h3><h4 id="1-4-1-请将您的帐户添加到-docker-组"><a href="#1-4-1-请将您的帐户添加到-docker-组" class="headerlink" title="1.4.1   请将您的帐户添加到 docker 组"></a>1.4.1   请将您的帐户添加到 <strong>docker</strong> 组</h4><p>在普通用户下执行 <code>docker</code> 命令需要用 <code>sudo</code> ，没加 <code>sudo</code> 出现了下图所示的提示：<br><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/1.jpg" srcset="/img/loading.gif" lazyload alt="1"></p>
+<h3 id="1-4-使用-Docker-管理-seL4-Camkes-和-L4v-依赖性"><a href="#1-4-使用-Docker-管理-seL4-Camkes-和-L4v-依赖性" class="headerlink" title="1.4  使用 Docker 管理 seL4, Camkes, 和 L4v 依赖性"></a>1.4  使用 Docker 管理 seL4, Camkes, 和 L4v 依赖性</h3><h4 id="1-4-1-请将您的帐户添加到-docker-组"><a href="#1-4-1-请将您的帐户添加到-docker-组" class="headerlink" title="1.4.1   请将您的帐户添加到 docker 组"></a>1.4.1   请将您的帐户添加到 <strong>docker</strong> 组</h4><p>在普通用户下执行 <code>docker</code> 命令需要用 <code>sudo</code> ，没加 <code>sudo</code> 出现了下图所示的提示：<br><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/1.jpg" srcset="/img/loading.gif" lazyload alt="1"></p>
 <p>为此，我们需要将该普通用户加入到 <strong>docker</strong> 这个组。</p>
 <p>可以执行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo usermod -aG docker $(<span class="hljs-built_in">whoami</span>)	<span class="hljs-comment">#后面是用户名</span><br></code></pre></td></tr></table></figure>
@@ -352,7 +352,7 @@
 
 <p>这将下载一个容器内的终端，该终端具有构建、模拟和测试 <strong>seL4 &amp; camkes</strong> 程序的所有相关工具，第一次运行，<strong>docker</strong> 将获取相关镜像，等待时间较长。  </p>
 <p>运行成功如下图：</p>
-<p><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/2.jpg" srcset="/img/loading.gif" lazyload alt="2"></p>
+<p><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/2.jpg" srcset="/img/loading.gif" lazyload alt="2"></p>
 <p>运行成功后，设定一个映射的文件夹到容器中：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">make user HOST_DIR=/home/自己的目录<br></code></pre></td></tr></table></figure>
 
@@ -397,7 +397,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">qemu-system-riscv64 --version<br></code></pre></td></tr></table></figure>
 
 <p>若出现如下运行结果，则表示安装成功：</p>
-<p><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/3.jpg" srcset="/img/loading.gif" lazyload alt="3"></p>
+<p><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/3.jpg" srcset="/img/loading.gif" lazyload alt="3"></p>
 <p>[原文参考1](<a target="_blank" rel="noopener" href="https://dunky-z.github.io/2021/07/23/QEMU%E5%88%9D%E8%AF%86/">QEMU初识 - Dominic (dunky-z.github.io)</a>)</p>
 <p>[原文参考2](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/258394849">在 QEMU 上运行 RISC-V 64 位版本的 Linux - 知乎 (zhihu.com)</a>)</p>
 <h2 id="3-安装交叉工具链-riscv-gnu-toolchain"><a href="#3-安装交叉工具链-riscv-gnu-toolchain" class="headerlink" title="3.  安装交叉工具链-riscv-gnu-toolchain"></a>3.  安装交叉工具链-riscv-gnu-toolchain</h2><p><strong>注意：</strong> 同上面的 QEMU 安装，由于Docker的隔离性，riscv-gnu-toolchain 也要安装容器内才能起作用，若宿主机上已安装相关工具链，将安装目录拷贝到映像目录，再配置环境变量即可，无需重新安装。</p>
@@ -412,7 +412,7 @@
 
 <p>因为qemu在toolchain，并且文件夹较大，在此处删除了qemu文件夹；耐心等待子仓库下载完成。</p>
 <p>在等待过程中，<em>可能会出现下图这样的错误</em> ，并查找了几种解决的办法：</p>
-<p><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/5.jpg" srcset="/img/loading.gif" lazyload alt="5"></p>
+<p><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/5.jpg" srcset="/img/loading.gif" lazyload alt="5"></p>
 <p><strong>方法1：</strong></p>
 <p>有些资料显示是因为要下载的文件太大，需要扩大传输限制，因此采用如下解决办法：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git config --global http.postBuffer 524288000</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git config --list</span><br></code></pre></td></tr></table></figure>
@@ -474,16 +474,16 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">repo init -u https://github.com/seL4/sel4test-manifest.git	#初始化仓库<br>repo sync		#默认同步所有仓<br></code></pre></td></tr></table></figure>
 
 <p><em>有可能会出现如下错误：</em></p>
-<p><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/4.jpg" srcset="/img/loading.gif" lazyload alt="4"><br>因为不翻墙的话，是没法访问的，因此设置为清华的镜像源：</p>
+<p><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/4.jpg" srcset="/img/loading.gif" lazyload alt="4"><br>因为不翻墙的话，是没法访问的，因此设置为清华的镜像源：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/<br></code></pre></td></tr></table></figure>
 
 <p>再重新执行 <code>repo init</code> 就可以正常运行了。</p>
 <p><em>若出现了如下错误：</em></p>
-<p><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/6.png" srcset="/img/loading.gif" lazyload alt="6"></p>
+<p><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/6.png" srcset="/img/loading.gif" lazyload alt="6"></p>
 <p>则可能是因为不是在我们的映射目录下执行的命令，也就是没有在本文中的seL4test下运行。</p>
 <p>切换到映像目录即可解决。</p>
 <p><em>若出现如下问题：</em></p>
-<p><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/10.png" srcset="/img/loading.gif" lazyload alt="10"></p>
+<p><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/10.png" srcset="/img/loading.gif" lazyload alt="10"></p>
 <p><code>SyntaxError: invalid syntax</code> 原因是 <strong>python</strong> 的版本不对，查看是否为 <strong>python 3</strong>  ，若否则安装 <strong>python 3</strong> ，网上教程很多，并将 <em>&#x2F;bin&#x2F;repo</em> 首行改为 <strong>python3</strong> 即可。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xuanwolanxue/article/details/104678027">repo安装与简单使用</a></p>
 <p>接下来从这个文件夹进入docker容器：</p>
@@ -504,12 +504,12 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./simulate<br></code></pre></td></tr></table></figure>
 
 <p>若编译成功，则会由如下界面：</p>
-<p><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/7.jpg" srcset="/img/loading.gif" lazyload alt="7"></p>
+<p><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/7.jpg" srcset="/img/loading.gif" lazyload alt="7"></p>
 <p>则对spike平台下的seL4编译运行成功。</p>
 <p><em>可能会出现如下错误：</em></p>
-<p><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/8.jpg" srcset="/img/loading.gif" lazyload alt="8"></p>
+<p><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/8.jpg" srcset="/img/loading.gif" lazyload alt="8"></p>
 <p>根据他的提示可以看出是内存分配失败，默认分配的内存是4095M，对于使用虚拟机的我们来说太大了，因此我们需要找到他的设置地址，在build.ninja文件中可以找到：</p>
-<p><img src="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/9.png" srcset="/img/loading.gif" lazyload alt="9"></p>
+<p><img src="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/9.png" srcset="/img/loading.gif" lazyload alt="9"></p>
 <p>重新使用 <code>ninja</code> 命令，问题解决。</p>
 
                 
@@ -536,7 +536,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>sel4编译于运行</div>
-      <div>http://example.com/2023/03/20/sel4编译于运行/</div>
+      <div>http://example.com/2022/03/20/sel4编译于运行/</div>
     </div>
     <div class="license-meta">
       
@@ -548,7 +548,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月20日</div>
+          <div>2022年3月20日</div>
         </div>
       
       
@@ -580,7 +580,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/" title="RISCV特权架构">
+                      <a href="/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/" title="RISCV特权架构">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">RISCV特权架构</span>
                         <span class="visible-mobile">上一篇</span>
@@ -590,7 +590,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/" title="haps自动化脚本">
+                      <a href="/2022/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/" title="haps自动化脚本">
                         <span class="hidden-mobile">haps自动化脚本</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>

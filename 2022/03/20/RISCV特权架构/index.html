@@ -19,22 +19,22 @@
     <meta name="description" content="RV32&#x2F;64 特权架构1. 三种权限模式 机器模式（machine mode）   监管者模式（supervisor mode） 用户模式（user mode）[^注]：XLEN指代整数寄存器的宽度  2. 特权指令布局 3. 简单嵌入式系统的机器模式机器模式是 RISC-V 中 hart（hardware thread ,硬件线程）可以执行的最高权限模式。机器模式最重要的特性是拦截和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RISCV特权架构">
-<meta property="og:url" content="http://example.com/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:url" content="http://example.com/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="F.Y &amp; 博客">
 <meta property="og:description" content="RV32&#x2F;64 特权架构1. 三种权限模式 机器模式（machine mode）   监管者模式（supervisor mode） 用户模式（user mode）[^注]：XLEN指代整数寄存器的宽度  2. 特权指令布局 3. 简单嵌入式系统的机器模式机器模式是 RISC-V 中 hart（hardware thread ,硬件线程）可以执行的最高权限模式。机器模式最重要的特性是拦截和">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/RISCV%E7%89%B9%E6%9D%83%E6%8C%87%E4%BB%A4.png">
-<meta property="og:image" content="http://example.com/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/mstatus%E6%8E%A7%E5%88%B6%E7%8A%B6%E6%80%81%E5%AF%84%E5%AD%98%E5%99%A8.png">
-<meta property="og:image" content="http://example.com/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/sstatus.png">
-<meta property="og:image" content="http://example.com/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/Sv32%E9%A1%B5%E8%A1%A8%E9%A1%B9.png">
-<meta property="og:image" content="http://example.com/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/satp.png">
-<meta property="og:image" content="http://example.com/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E6%9C%BA%E5%88%B6.png">
-<meta property="article:published_time" content="2023-03-20T03:02:47.000Z">
-<meta property="article:modified_time" content="2023-03-20T03:24:26.479Z">
+<meta property="og:image" content="http://example.com/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/RISCV%E7%89%B9%E6%9D%83%E6%8C%87%E4%BB%A4.png">
+<meta property="og:image" content="http://example.com/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/mstatus%E6%8E%A7%E5%88%B6%E7%8A%B6%E6%80%81%E5%AF%84%E5%AD%98%E5%99%A8.png">
+<meta property="og:image" content="http://example.com/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/sstatus.png">
+<meta property="og:image" content="http://example.com/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/Sv32%E9%A1%B5%E8%A1%A8%E9%A1%B9.png">
+<meta property="og:image" content="http://example.com/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/satp.png">
+<meta property="og:image" content="http://example.com/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E6%9C%BA%E5%88%B6.png">
+<meta property="article:published_time" content="2022-03-20T03:02:47.000Z">
+<meta property="article:modified_time" content="2023-03-20T03:31:53.349Z">
 <meta property="article:author" content="小凡">
 <meta property="article:tag" content="RISC-V">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/RISCV%E7%89%B9%E6%9D%83%E6%8C%87%E4%BB%A4.png">
+<meta name="twitter:image" content="http://example.com/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/RISCV%E7%89%B9%E6%9D%83%E6%8C%87%E4%BB%A4.png">
   
   
   
@@ -215,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-20 11:02" pubdate>
-          2023年3月20日 上午
+        <time datetime="2022-03-20 11:02" pubdate>
+          2022年3月20日 上午
         </time>
       </span>
     
@@ -286,7 +286,7 @@
 <li>监管者模式（supervisor mode）</li>
 <li>用户模式（user mode）<br>[^注]：XLEN指代整数寄存器的宽度</li>
 </ul>
-<h2 id="2-特权指令布局"><a href="#2-特权指令布局" class="headerlink" title="2. 特权指令布局"></a>2. 特权指令布局</h2><p><img src="/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/RISCV%E7%89%B9%E6%9D%83%E6%8C%87%E4%BB%A4.png" srcset="/img/loading.gif" lazyload alt="RISCV特权指令"></p>
+<h2 id="2-特权指令布局"><a href="#2-特权指令布局" class="headerlink" title="2. 特权指令布局"></a>2. 特权指令布局</h2><p><img src="/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/RISCV%E7%89%B9%E6%9D%83%E6%8C%87%E4%BB%A4.png" srcset="/img/loading.gif" lazyload alt="RISCV特权指令"></p>
 <h2 id="3-简单嵌入式系统的机器模式"><a href="#3-简单嵌入式系统的机器模式" class="headerlink" title="3. 简单嵌入式系统的机器模式"></a>3. 简单嵌入式系统的机器模式</h2><p>机器模式是 RISC-V 中 hart（hardware thread ,硬件线程）可以执行的<strong>最高权限模式</strong>。<br>机器模式最重要的特性是<strong>拦截</strong>和<strong>处理异常</strong>（不寻常的运行时事件）的能力，RISC-V 将异常分为两类。一类是<strong>同步异常</strong>，这类异常在指令执行期间产生，如访问了无效的存储器地址或执行了具有无效操作码的指令时。另一类是<strong>中断</strong>，它是与指令流异步的外部事件。<br>另外，RISC-V 中实现精确异常，在 M 模式运行期间可能发生的<strong>同步异常</strong>有五种：</p>
 <ul>
 <li>访问错误异常 当物理内存的地址不支持访问类型时发生（例如尝试写入 ROM）。</li>
@@ -306,7 +306,7 @@
 <li><strong>mscratch</strong>（Machine Scratch）它暂时存放一个字大小的数据。</li>
 <li><strong>mstatus</strong>（Machine Status）全局中断使能寄存器，以及许多其他的状态.</li>
 </ul>
-<p><img src="/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/mstatus%E6%8E%A7%E5%88%B6%E7%8A%B6%E6%80%81%E5%AF%84%E5%AD%98%E5%99%A8.png" srcset="/img/loading.gif" lazyload alt="mstatus 控制状态寄存器"><br>只有在全局中断使能位 <strong>mstatus.MIE</strong> 置 1 时才会产生中断.此外，每个中断在控制状态寄存器 mie 中都有自己的使能位。<br><strong>当一个 hart 发生异常时，硬件自动经历如下的状态转换：</strong></p>
+<p><img src="/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/mstatus%E6%8E%A7%E5%88%B6%E7%8A%B6%E6%80%81%E5%AF%84%E5%AD%98%E5%99%A8.png" srcset="/img/loading.gif" lazyload alt="mstatus 控制状态寄存器"><br>只有在全局中断使能位 <strong>mstatus.MIE</strong> 置 1 时才会产生中断.此外，每个中断在控制状态寄存器 mie 中都有自己的使能位。<br><strong>当一个 hart 发生异常时，硬件自动经历如下的状态转换：</strong></p>
 <ul>
 <li>将异常指令的  PC 保存在 <em><strong>mepc</strong></em> 中，PC 被设置为 <em><strong>mtvec</strong></em>(异常时跳转地址)。（对于同步异常，<em><strong>mepc</strong></em>指向导致异常的指令；对于中断，它指向中断处理后应该恢复执行的位置。）</li>
 <li>根据异常来源设置 <em><strong>mcause</strong></em>（指示异常的种类），并将 <em><strong>mtval</strong></em> 设置为出错的地址或者其它适用于特定异常的信息字。</li>
@@ -314,8 +314,8 @@
 <li>发生异常之前的权限模式保留在 <em><strong>mstatus</strong></em> 的 <em><strong>MPP</strong></em> 域中，再把权限模式更改为 <em><strong>M</strong></em> 。图 10.5 显示了 <em><strong>MPP</strong></em> 域的编码（如果处理器仅实现 <em><strong>M</strong></em> 模式，则有效地跳过这个步骤）。</li>
 </ul>
 <p>为避免覆盖整数寄存器中的内容，中断处理程序先在最开始用 <em><strong>mscratch</strong></em> 和整数寄存器（例如 a0）中的值交换。通常，软件会让 <em><strong>mscratch</strong></em> 包含指向附加临时内存空间的指针，处理程序用该指针来保存其主体中将会用到的整数寄存器。在主体执行之后，中断程序会恢复它保存到内存中的寄存器，然后再次使用 <em><strong>mscratch</strong></em> 和 <em><strong>a0</strong></em> 交换，将两个寄存器恢复到它们在发生异常之前的值。最后，处理程序用 <em><strong>mret</strong></em> 指令（ <em><strong>M</strong></em> 模式特有的指令）返回。 <em><strong>mret</strong></em> 将 <em><strong>PC</strong></em> 设置为 <em><strong>mepc</strong></em> ，通过将 <em><strong>mstatus</strong></em> 的 <em><strong>MPIE</strong></em> 域复制到MIE 来恢复之前的中断使能设置，并将权限模式设置为 <em><strong>mstatus</strong></em> 的 <em><strong>MPP</strong></em> 域中的值。这基本是前一段中描述的逆操作。<br>除了上面介绍的 <em><strong>mret</strong></em> 指令之外，M 模式还提供了另外一条指令：<em><strong>wfi（Wait For Interrupt）</strong></em> 。<em><strong>wfi</strong></em> 通知处理器目前没有任何有用的工作，所有它应该进入低功耗模式，直到任何使能有效的中断等待处理，即<strong>mie&amp;mip ≠ 0</strong>。  </p>
-<h2 id="5-监管者模式"><a href="#5-监管者模式" class="headerlink" title="5. 监管者模式"></a>5. 监管者模式</h2><p>M 模式下只能执行可信任的代码，对于一些无法判定是否可信或者代码较大的情况，需要对不受信任的进程提供隔离，故使用基于页面的虚拟内存构成了监管者模式（S 模式）的核心。<br>默认情况下异常交给M模式下的异常处理程序，但RISC-V 提供了一种异常委托机制。通过该机制可以选择性地将中断和同步异常交给 S 模式处理，而完全绕过 M 模式，从而提高了处理速度。<br><strong>mideleg（Machine Interrupt Delegation，机器中断委托）CSR</strong> 控制将哪些中断委托给 <em><strong>S</strong></em> 模式。与 <em><strong>mip</strong></em> 和 <em><strong>mie</strong></em> 一样， <em><strong>mideleg</strong></em> 中的每个位对应相同的异常。<br>委托给 <em><strong>S</strong></em> 模式的任何中断都可以被 <em><strong>S</strong></em> 模式的软件屏蔽。<em><strong>sie（Supervisor Interrupt Enable，监管者中断使能）</strong></em> 和 <em><strong>sip（Supervisor Interrupt Pending，监管者中断待处理）CSR</strong></em> 是 <em><strong>S</strong></em> 模式的控制状态寄存器，他们是 <em><strong>mie</strong></em> 和 <em><strong>mip</strong></em> 的子集。它们有着和 <em><strong>M</strong></em> 模式下相同的布局，但在 <em><strong>sie</strong></em> 和 <em><strong>sip</strong></em> 中只有与由 <em><strong>mideleg</strong></em> 委托的中断对应的位才能读写。那些没有被委派的中断对应的位始终为零。<br>同步异常的处理类似与上面的中断委托，也是通过 <em><strong>mideleg</strong></em> 委托给 <em><strong>S</strong></em> 模式。<br><em><strong>S</strong></em> 模式有几个异常处理 CSR：<em><strong>sepc</strong></em> 、<em><strong>stvec</strong></em> 、<em><strong>scause</strong></em> 、<em><strong>sscratch</strong></em> 、<em><strong>stval</strong></em> 和 <em><strong>sstatus</strong></em> ，它们执行描述的 <em><strong>M</strong></em> 模式 CSR 相同的功能。下图显示了 <em><strong>sstatus</strong></em> 寄存器的布局。监管者异常返回指令 <em><strong>sret</strong></em> 与 <em><strong>mret</strong></em> 的行为相同，但它作用于 <em><strong>S</strong></em> 模式的异常处理 <em><strong>CSR</strong></em>，  而不是 <em><strong>M</strong></em> 模式的 <em><strong>CSR</strong></em> 。<br><img src="/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/sstatus.png" srcset="/img/loading.gif" lazyload alt="sstatus"> </p>
-<h2 id="6-基于页面的虚拟内存"><a href="#6-基于页面的虚拟内存" class="headerlink" title="6. 基于页面的虚拟内存"></a>6. 基于页面的虚拟内存</h2><p><img src="/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/Sv32%E9%A1%B5%E8%A1%A8%E9%A1%B9.png" srcset="/img/loading.gif" lazyload alt="Sv32页表项">    </p>
+<h2 id="5-监管者模式"><a href="#5-监管者模式" class="headerlink" title="5. 监管者模式"></a>5. 监管者模式</h2><p>M 模式下只能执行可信任的代码，对于一些无法判定是否可信或者代码较大的情况，需要对不受信任的进程提供隔离，故使用基于页面的虚拟内存构成了监管者模式（S 模式）的核心。<br>默认情况下异常交给M模式下的异常处理程序，但RISC-V 提供了一种异常委托机制。通过该机制可以选择性地将中断和同步异常交给 S 模式处理，而完全绕过 M 模式，从而提高了处理速度。<br><strong>mideleg（Machine Interrupt Delegation，机器中断委托）CSR</strong> 控制将哪些中断委托给 <em><strong>S</strong></em> 模式。与 <em><strong>mip</strong></em> 和 <em><strong>mie</strong></em> 一样， <em><strong>mideleg</strong></em> 中的每个位对应相同的异常。<br>委托给 <em><strong>S</strong></em> 模式的任何中断都可以被 <em><strong>S</strong></em> 模式的软件屏蔽。<em><strong>sie（Supervisor Interrupt Enable，监管者中断使能）</strong></em> 和 <em><strong>sip（Supervisor Interrupt Pending，监管者中断待处理）CSR</strong></em> 是 <em><strong>S</strong></em> 模式的控制状态寄存器，他们是 <em><strong>mie</strong></em> 和 <em><strong>mip</strong></em> 的子集。它们有着和 <em><strong>M</strong></em> 模式下相同的布局，但在 <em><strong>sie</strong></em> 和 <em><strong>sip</strong></em> 中只有与由 <em><strong>mideleg</strong></em> 委托的中断对应的位才能读写。那些没有被委派的中断对应的位始终为零。<br>同步异常的处理类似与上面的中断委托，也是通过 <em><strong>mideleg</strong></em> 委托给 <em><strong>S</strong></em> 模式。<br><em><strong>S</strong></em> 模式有几个异常处理 CSR：<em><strong>sepc</strong></em> 、<em><strong>stvec</strong></em> 、<em><strong>scause</strong></em> 、<em><strong>sscratch</strong></em> 、<em><strong>stval</strong></em> 和 <em><strong>sstatus</strong></em> ，它们执行描述的 <em><strong>M</strong></em> 模式 CSR 相同的功能。下图显示了 <em><strong>sstatus</strong></em> 寄存器的布局。监管者异常返回指令 <em><strong>sret</strong></em> 与 <em><strong>mret</strong></em> 的行为相同，但它作用于 <em><strong>S</strong></em> 模式的异常处理 <em><strong>CSR</strong></em>，  而不是 <em><strong>M</strong></em> 模式的 <em><strong>CSR</strong></em> 。<br><img src="/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/sstatus.png" srcset="/img/loading.gif" lazyload alt="sstatus"> </p>
+<h2 id="6-基于页面的虚拟内存"><a href="#6-基于页面的虚拟内存" class="headerlink" title="6. 基于页面的虚拟内存"></a>6. 基于页面的虚拟内存</h2><p><img src="/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/Sv32%E9%A1%B5%E8%A1%A8%E9%A1%B9.png" srcset="/img/loading.gif" lazyload alt="Sv32页表项">    </p>
 <p>图为一个<em><strong>RV32</strong></em>的页表项（ <em><strong>PTE</strong></em> ），从右往左每一位都代表不同的含义：</p>
 <ul>
 <li><em><strong>V</strong></em> 位决定了该页表项的其余部分是否有效（<em><strong>V &#x3D; 1</strong></em> 时有效）。若 <em><strong>V &#x3D; 0</strong></em>，则任何遍历<br>到此页表项的虚址转换操作都会导致页错误。</li>
@@ -327,9 +327,9 @@
 <li><em><strong>RSW</strong></em> 域留给操作系统使用，它会被硬件忽略。</li>
 <li><em><strong>PPN</strong></em> 域包含物理页号，这是物理地址的一部分。若这个页表项是一个叶节点，那么 <em><strong>PPN</strong></em> 是转换后物理地址的一部分。否则 <em><strong>PPN</strong></em> 给出下一节页表的地址（多级页表）<br>系统的分页机制由一个 <em><strong>S</strong></em> 模式下 <strong>satp（Supervisor Address Translation and Protection，监管者地址转换和保护）</strong> 的控制状态寄存器来控制。</li>
 </ul>
-<p><img src="/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/satp.png" srcset="/img/loading.gif" lazyload alt="satp">  </p>
+<p><img src="/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/satp.png" srcset="/img/loading.gif" lazyload alt="satp">  </p>
 <p><em><strong>MODE</strong></em> 决定了开启分页以及页表级数， <em><strong>ASID（Address Space Identifier</strong></em> ， 地址空间标识符）域是可选的，它可以用来降低上下文切换的开销。其中 <em><strong>PNN</strong></em> 保存了该进程根页表的物理地址，相当于下图中的页表指针。  </p>
-<p><img src="/2023/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E6%9C%BA%E5%88%B6.png" srcset="/img/loading.gif" lazyload alt="地址转换机制"></p>
+<p><img src="/2022/03/20/RISCV%E7%89%B9%E6%9D%83%E6%9E%B6%E6%9E%84/%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E6%9C%BA%E5%88%B6.png" srcset="/img/loading.gif" lazyload alt="地址转换机制"></p>
 <ul>
 <li>这个二级页表结构中，首先根据页表指针定位到第一级页表项，由虚拟地址的第一个页号找到第一个页表中页号对应的位置，该处存储的是下一级页表的页表指针。</li>
 <li>第二级页表指针加上虚拟地址中的第二个页号，在二级页表中找到对应的位置，该位置存储的是实际的物理地址。</li>
@@ -359,7 +359,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>RISCV特权架构</div>
-      <div>http://example.com/2023/03/20/RISCV特权架构/</div>
+      <div>http://example.com/2022/03/20/RISCV特权架构/</div>
     </div>
     <div class="license-meta">
       
@@ -371,7 +371,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月20日</div>
+          <div>2022年3月20日</div>
         </div>
       
       
@@ -403,11 +403,17 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/03/16/hello-world/" title="Hello World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/" title="sel4编译于运行">
+                      <a href="/2022/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/" title="sel4编译于运行">
                         <span class="hidden-mobile">sel4编译于运行</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
