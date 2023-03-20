@@ -16,23 +16,32 @@
   <meta name="author" content="小凡">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在说OpenBMC之前，绕不开两个概念：BMC（Baseboard Manager Controller，简称BMC）、IPMI（Intelligent Platform Management Interface）。 BMC先说一下BMC（Baseboard Manager Controller，简称BMC），BMC应用了IPMI架构的智能性，是嵌入在计算机（通常是服务器）主板上的专用的微控制">
+    <meta name="description" content="HAPS 自动化测试脚本使用文档1.  自动化脚本获取为了节省配置 haps 的时间，编写了自动化执行的脚本，脚本已上传代码仓库，路径如下：自动化执行脚本 该路径下包括使用 cmake 编译 bootrom 代码的相关配置文件以及在 haps 上自动化执行脚本 hapsTest.py 。 2.  配置脚本文件为了能在自己的路径中使用，需要配置脚本中的相关路径，有两种方案： 方案一：修改脚本文件需要">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenBMC：1.OpenBMC简介">
-<meta property="og:url" content="http://example.com/2023/03/17/OpenBMC-0/index.html">
+<meta property="og:title" content="haps自动化脚本">
+<meta property="og:url" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="F.Y &amp; 博客">
-<meta property="og:description" content="在说OpenBMC之前，绕不开两个概念：BMC（Baseboard Manager Controller，简称BMC）、IPMI（Intelligent Platform Management Interface）。 BMC先说一下BMC（Baseboard Manager Controller，简称BMC），BMC应用了IPMI架构的智能性，是嵌入在计算机（通常是服务器）主板上的专用的微控制">
+<meta property="og:description" content="HAPS 自动化测试脚本使用文档1.  自动化脚本获取为了节省配置 haps 的时间，编写了自动化执行的脚本，脚本已上传代码仓库，路径如下：自动化执行脚本 该路径下包括使用 cmake 编译 bootrom 代码的相关配置文件以及在 haps 上自动化执行脚本 hapsTest.py 。 2.  配置脚本文件为了能在自己的路径中使用，需要配置脚本中的相关路径，有两种方案： 方案一：修改脚本文件需要">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/03/17/OpenBMC-0/image_V625De4u_R.png">
-<meta property="article:published_time" content="2023-03-17T12:17:46.000Z">
-<meta property="article:modified_time" content="2023-03-16T14:52:19.161Z">
+<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/1.png">
+<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/2.png">
+<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/3.png">
+<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/4.png">
+<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/7.png">
+<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/8.png">
+<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/9.png">
+<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/5.png">
+<meta property="og:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/6.png">
+<meta property="article:published_time" content="2023-03-20T03:01:53.000Z">
+<meta property="article:modified_time" content="2023-03-20T03:22:04.786Z">
 <meta property="article:author" content="小凡">
+<meta property="article:tag" content="仿真环境">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/03/17/OpenBMC-0/image_V625De4u_R.png">
+<meta name="twitter:image" content="http://example.com/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/1.png">
   
   
   
-  <title>OpenBMC：1.OpenBMC简介 - F.Y &amp; 博客</title>
+  <title>haps自动化脚本 - F.Y &amp; 博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="OpenBMC：1.OpenBMC简介"></span>
+            <span id="subtitle" data-typed-text="haps自动化脚本"></span>
           
         </div>
 
@@ -209,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-17 20:17" pubdate>
-          2023年3月17日 晚上
+        <time datetime="2023-03-20 11:01" pubdate>
+          2023年3月20日 上午
         </time>
       </span>
     
@@ -221,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          2k 字
         
       </span>
     
@@ -232,7 +241,7 @@
         
         
         
-          11 分钟
+          17 分钟
         
       </span>
     
@@ -270,29 +279,97 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">OpenBMC：1.OpenBMC简介</h1>
+            <h1 style="display: none">haps自动化脚本</h1>
             
             
               <div class="markdown-body">
                 
-                <span id="more"></span>
-
-<p>在说OpenBMC之前，绕不开两个概念：BMC（Baseboard Manager Controller，简称BMC）、IPMI（Intelligent Platform Management Interface）。</p>
-<h3 id="BMC"><a href="#BMC" class="headerlink" title="BMC"></a>BMC</h3><p>先说一下BMC（Baseboard Manager Controller，简称BMC），BMC应用了IPMI架构的智能性，是嵌入在计算机（通常是服务器）主板上的专用的微控制器。它是负责管理系统和管理软件与服务器平台硬件之间的一个接口。</p>
-<p>简单来说，BMC就是用于监控和管理服务器的专用控制器，普通的PC是没有的，服务器的产品必配，因为相对于普通的PC来说，服务器在稳定性、安全性、可靠性、性能、可管理性等方面的要求都更高更严苛，这时候就需要BMC来管控服务器。</p>
-<p>BMC的主要功能包括：</p>
+                <h1 id="HAPS-自动化测试脚本使用文档"><a href="#HAPS-自动化测试脚本使用文档" class="headerlink" title="HAPS 自动化测试脚本使用文档"></a>HAPS 自动化测试脚本使用文档</h1><h2 id="1-自动化脚本获取"><a href="#1-自动化脚本获取" class="headerlink" title="1.  自动化脚本获取"></a>1.  自动化脚本获取</h2><p>为了节省配置 haps 的时间，编写了自动化执行的脚本，脚本已上传代码仓库，路径如下：<a target="_blank" rel="noopener" href="http://gerrit.eswin.cn/c/eswin/bootrom/+/11228">自动化执行脚本</a></p>
+<p>该路径下包括使用 cmake 编译 bootrom 代码的相关配置文件以及在 haps 上自动化执行脚本 hapsTest.py 。</p>
+<h2 id="2-配置脚本文件"><a href="#2-配置脚本文件" class="headerlink" title="2.  配置脚本文件"></a>2.  配置脚本文件</h2><p>为了能在自己的路径中使用，需要配置脚本中的相关路径，有两种方案：</p>
+<h3 id="方案一：修改脚本文件"><a href="#方案一：修改脚本文件" class="headerlink" title="方案一：修改脚本文件"></a>方案一：修改脚本文件</h3><p>需要修改的路径见图所示：</p>
+<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/1.png" srcset="/img/loading.gif" lazyload> </p>
+<p>将其中的路径配置成自己的路径。</p>
+<h3 id="方案二：按脚本配置路径"><a href="#方案二：按脚本配置路径" class="headerlink" title="方案二：按脚本配置路径"></a>方案二：按脚本配置路径</h3><p>将代码路径配置为如下结构：</p>
+<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/2.png" srcset="/img/loading.gif" lazyload> </p>
+<p>其中：</p>
 <ul>
-<li>设备信息管理：服务器型号、制造商、日期、各部件生产和技术信息、机箱信息、主板信息等、BMC信息（服务器主机名、IP、BMC固件版本等信息）；</li>
-<li>服务器状态监控管理：对服务器各部件（CPU、内存、硬盘、风扇、机框等）的温度、电压等健康状态进行检测；</li>
-<li>服务器远程控制管理：服务器的开关机、重启、维护、固件更新、系统安装等；</li>
-<li>维护管理：日志管理、用户管理、BIOS管理、告警管理等。</li>
+<li>autoflow 为自动化脚本的路径</li>
+<li>binary 为bootrom二进制文件路径</li>
+<li>envset 为在haps 上测试需要的环境。</li>
 </ul>
-<h3 id="IPMI"><a href="#IPMI" class="headerlink" title="IPMI"></a>IPMI</h3><p>IPMI：智能平台管理接口（Intelligent Platform Management Interface）原本是一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Intel" title="Intel">Intel</a>架构的企业系统的周边设备所采用的一种工业标准。IPMI 能够横跨不同的操作系统、固件和硬件平台，可以智能的监控、控制和自动回报大量服务器的运作状况，以降低服务器系统成本。</p>
-<p>IPMI独立于操作系统外自行运作，并容许管理者即使在缺少操作系统或系统管理软件、或受监控的系统关机但有接电源的情况下仍能远程管理系统。IPMI也能在操作系统启动后活动，与系统管理功能一并使用时还能提供加强功能，IPMI只定义架构和接口格式成为标准，详细实现可能会有所不同。</p>
-<p>IPMI包含了一个以 基板管理控制器(<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=Baseboard_management_controller&action=edit&redlink=1" title="BMC">BMC</a>) 为主的控制器和其他分布在不同系统模块（被称为“卫星”控制器）的管理控制器，卫星控制器包含了相同的架构透过IPMB(Intelligent Platform Management Bus&#x2F;Bridge) - 一个<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/I%C2%B2C" title="I²C">I²C</a> (Inter-Integrated Circuit)加强实现的系统接口链接到基板管理控制器(BMC)，基板管理控制器(BMC) 也能与 远程管理控制协议(RMCP) - 一个在此规格内的特殊有线协议一同被管理。</p>
-<h3 id="BMC于IPMI是什么关系？"><a href="#BMC于IPMI是什么关系？" class="headerlink" title="BMC于IPMI是什么关系？"></a>BMC于IPMI是什么关系？</h3><p>简而言之，IPMI是一种规范，一种协议，BMC包含其中，BMC是其中最重要的一个控制器，BMC就是服务器主板上一块独立的小板卡，有自己独立的处理器，和控制系统，通过IPMB、LPC（low-pin-count-interface）、SMBus等接口与主机硬件或者主机系统进行通信，并通过网络、串行&#x2F;Moderm、PCI等接口传向本地主机&#x2F;远程服务器提供查询和控制等功能</p>
-<p>OpenBMC是BMC 的Linux发行版，旨在跨越异构系统，包括企业，高性能计算（HPC），电信和云规模数据中心等系统的管理。</p>
-<p><img src="/2023/03/17/OpenBMC-0/image_V625De4u_R.png" srcset="/img/loading.gif" lazyload alt="bmc"></p>
+<p>主要是 envset 文件夹的设置，需要到 &#x2F;opt 文件夹下将openocd 相关文件拷贝过来，然后建立一个riscv64_unknown_elf_toolchain 的软链接，用来打开gdb使用。配置完这些，就可以开始我们的自动化haps测试了。</p>
+<p><strong>note</strong>:  自动化脚本中gdb的执行过程中打了一些断点，若编译的主函数不是btr_main.c，根据需要注释掉脚本中的断点。</p>
+<h2 id="3-编译-bootrom"><a href="#3-编译-bootrom" class="headerlink" title="3.  编译 bootrom"></a>3.  编译 bootrom</h2><p>本文的测试代码在 btr_main.c 中实现，有两种编译方法:</p>
+<h3 id="方案一：使用-makefile-进行编译"><a href="#方案一：使用-makefile-进行编译" class="headerlink" title="方案一：使用 makefile 进行编译"></a>方案一：使用 makefile 进行编译</h3><p>该方法是原始代码仓库的编译方法，如果要在 haps 上运行，需要修改链接文件保证能够正常运行，到<a target="_blank" rel="noopener" href="http://gerrit.eswin.cn/c/eswin/bootrom/+/11249">该目录下</a>获取 patch，打到自己的 bootrom 代码里。接下来，</p>
+<p>执行步骤如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /bootrom<br>make clean<br>make PLATFORM=fpga<br></code></pre></td></tr></table></figure>
+
+<p>若没有错误，编译后如下路径将产生如下三个文件：</p>
+<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/3.png" srcset="/img/loading.gif" lazyload> </p>
+<p>将其中的 btr.elf 拷贝到成都服务器中我们刚刚创建的 binary 文件夹中即可。其中拷贝的方法后面有介绍。</p>
+<h3 id="方案二：使用-cmake-编译"><a href="#方案二：使用-cmake-编译" class="headerlink" title="方案二：使用 cmake 编译"></a>方案二：使用 cmake 编译</h3><p>一样，首先去该路径下将 &#x2F;haps_verify_tools 文件夹下载下来<a target="_blank" rel="noopener" href="http://gerrit.eswin.cn/c/eswin/bootrom/+/11228">编译工具</a>，然后将&#x2F;haps_verify_tools 文件夹放在 &#x2F;bootrom 下，在 &#x2F;haps_verify_tools 文件夹下打开终端执行如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir build<br>cd ./build<br>rm -rf *<br>cmake -Dtarget_platform=fpga ..<br>make<br></code></pre></td></tr></table></figure>
+
+<p>可以将这些命令写成一个脚本，直接一键执行，脚本文件如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>echo &quot;start build...&quot;<br>cd ./build<br>rm -rf *<br>cmake -Dtarget_platform=fpga ..<br>make<br><span class="hljs-meta prompt_">#</span><span class="language-bash">scp /home/fan/workspace/bootrom/haps_verify/build/btr.elf e0005153@10.10.130.211:/home/e0005153/workspace/win2030/binary</span><br></code></pre></td></tr></table></figure>
+
+<p>若没有错误，编译完将在build文件夹下产生 btr.elf 文件。</p>
+<h2 id="4-传送文件到服务器"><a href="#4-传送文件到服务器" class="headerlink" title="4.  传送文件到服务器"></a>4.  传送文件到服务器</h2><p>我们可以尝试如下方法;</p>
+<ul>
+<li><p>使用 scp 命令，从本地发送到服务器，参考命令如下（由于安全限制，此方法本人已不可用）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">scp 二进制文件路径/btr.elf 服务器账号@10.10.130.211:/home/e0005153/workspace/win2030/binary<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>使用 ftp 中转</p>
+<ul>
+<li><p>本地主机以及服务器分别安装 filezilla</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get install filezilla<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>登录账号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">CRI：地址：10.100.130.32<br>端口号：2123<br>上传账号：cri02 密码CRI888888<br>下载账号：cri01 密码cri888888<br><span class="hljs-meta prompt_">#</span><span class="language-bash">尽量在ftp中创建自己的文件夹，保证不干扰他人的文件查找</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>登录后界面如下：左边为本地目录，右边为 ftp 目录。</p>
+<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/4.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-haps-上的自动化测试"><a href="#5-haps-上的自动化测试" class="headerlink" title="5.  haps 上的自动化测试"></a>5.  haps 上的自动化测试</h2><p>我们登录成都服务器（需要提前开通权限），其中很多配置已在 &#x2F;opt 中配置好了，我们只需要去自己的目录执行即可，切换到 <strong>第二步</strong> 中 hapsTest.py 的存放路径，执行如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo python  hapsTest.py<br></code></pre></td></tr></table></figure>
+
+<p>若成功，将会打开三个终端窗口，分别为 gdb 、minicom 、openpcd。</p>
+<ul>
+<li><strong>gdb</strong></li>
+</ul>
+<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/7.png" srcset="/img/loading.gif" lazyload> </p>
+<ul>
+<li><strong>minicom</strong></li>
+</ul>
+<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/8.png" srcset="/img/loading.gif" lazyload> </p>
+<ul>
+<li><strong>openocd</strong></li>
+</ul>
+<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/9.png" srcset="/img/loading.gif" lazyload> </p>
+<p>接下来就在 gdb 中进行调试，在 minicom 中观察输出结果。</p>
+<p><strong>note1</strong>:  若出现如下提示：</p>
+<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/5.png" srcset="/img/loading.gif" lazyload> </p>
+<p>请找相关人员开通 sudo 权限。</p>
+<p><strong>note2</strong>:  若出现openpcd无法运行的情况：</p>
+<p><img src="/2023/03/20/haps%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/6.png" srcset="/img/loading.gif" lazyload> </p>
+<p>先使用命令看一下是否有人占用：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -ef |grep openocd<br></code></pre></td></tr></table></figure>
+
+<p>若除了自己的账号有别人在占用，则需要沟通使用时间，不允许同时两个人使用；</p>
+<p>若没有别人再用，则可能haps出现里逻辑错误，需要找相关人员重新刷新一下bitfile 才能正常使用。</p>
+<p><strong>note3</strong>:  若无法打开minicom，使用如下命令查看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -aux|grep minicom<br></code></pre></td></tr></table></figure>
+
+<p>若有人占用，但并未使用，可以强制关闭：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kill -9 PID<br></code></pre></td></tr></table></figure>
+
+<p>当前版本需要使用usb2接口才能正常使用 minicom。</p>
 
                 
               </div>
@@ -302,6 +379,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%BB%BF%E7%9C%9F%E7%8E%AF%E5%A2%83/">#仿真环境</a>
+      
+    </div>
+  
 </div>
 
 
@@ -310,8 +394,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>OpenBMC：1.OpenBMC简介</div>
-      <div>http://example.com/2023/03/17/OpenBMC-0/</div>
+      <div>haps自动化脚本</div>
+      <div>http://example.com/2023/03/20/haps自动化脚本/</div>
     </div>
     <div class="license-meta">
       
@@ -323,7 +407,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月17日</div>
+          <div>2023年3月20日</div>
         </div>
       
       
@@ -355,9 +439,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" title="EDA环境部署">
+                      <a href="/2023/03/20/sel4%E7%BC%96%E8%AF%91%E4%BA%8E%E8%BF%90%E8%A1%8C/" title="sel4编译于运行">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">EDA环境部署</span>
+                        <span class="hidden-mobile">sel4编译于运行</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -365,8 +449,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/16/hexo%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/" title="hexo插入本地图片">
-                        <span class="hidden-mobile">hexo插入本地图片</span>
+                      <a href="/2023/03/20/EDA%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" title="EDA环境部署">
+                        <span class="hidden-mobile">EDA环境部署</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
