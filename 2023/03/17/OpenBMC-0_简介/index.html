@@ -19,16 +19,17 @@
     <meta name="description" content="在说OpenBMC之前，绕不开两个概念：BMC（Baseboard Manager Controller，简称BMC）、IPMI（Intelligent Platform Management Interface）。 BMC先说一下BMC（Baseboard Manager Controller，简称BMC），BMC应用了IPMI架构的智能性，是嵌入在计算机（通常是服务器）主板上的专用的微控制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenBMC：1.OpenBMC简介">
-<meta property="og:url" content="http://example.com/2023/03/17/OpenBMC-0/index.html">
+<meta property="og:url" content="http://example.com/2023/03/17/OpenBMC-0_%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="F.Y &amp; 博客">
 <meta property="og:description" content="在说OpenBMC之前，绕不开两个概念：BMC（Baseboard Manager Controller，简称BMC）、IPMI（Intelligent Platform Management Interface）。 BMC先说一下BMC（Baseboard Manager Controller，简称BMC），BMC应用了IPMI架构的智能性，是嵌入在计算机（通常是服务器）主板上的专用的微控制">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/03/17/OpenBMC-0/image_V625De4u_R.png">
+<meta property="og:image" content="http://example.com/2023/03/17/OpenBMC-0_%E7%AE%80%E4%BB%8B/image_V625De4u_R.png">
 <meta property="article:published_time" content="2023-03-17T12:17:46.000Z">
-<meta property="article:modified_time" content="2023-03-16T14:52:19.161Z">
+<meta property="article:modified_time" content="2023-03-21T11:26:40.858Z">
 <meta property="article:author" content="小凡">
+<meta property="article:tag" content="OpenBMC">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/03/17/OpenBMC-0/image_V625De4u_R.png">
+<meta name="twitter:image" content="http://example.com/2023/03/17/OpenBMC-0_%E7%AE%80%E4%BB%8B/image_V625De4u_R.png">
   
   
   
@@ -292,7 +293,7 @@
 <p>IPMI包含了一个以 基板管理控制器(<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=Baseboard_management_controller&action=edit&redlink=1" title="BMC">BMC</a>) 为主的控制器和其他分布在不同系统模块（被称为“卫星”控制器）的管理控制器，卫星控制器包含了相同的架构透过IPMB(Intelligent Platform Management Bus&#x2F;Bridge) - 一个<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/I%C2%B2C" title="I²C">I²C</a> (Inter-Integrated Circuit)加强实现的系统接口链接到基板管理控制器(BMC)，基板管理控制器(BMC) 也能与 远程管理控制协议(RMCP) - 一个在此规格内的特殊有线协议一同被管理。</p>
 <h3 id="BMC于IPMI是什么关系？"><a href="#BMC于IPMI是什么关系？" class="headerlink" title="BMC于IPMI是什么关系？"></a>BMC于IPMI是什么关系？</h3><p>简而言之，IPMI是一种规范，一种协议，BMC包含其中，BMC是其中最重要的一个控制器，BMC就是服务器主板上一块独立的小板卡，有自己独立的处理器，和控制系统，通过IPMB、LPC（low-pin-count-interface）、SMBus等接口与主机硬件或者主机系统进行通信，并通过网络、串行&#x2F;Moderm、PCI等接口传向本地主机&#x2F;远程服务器提供查询和控制等功能</p>
 <p>OpenBMC是BMC 的Linux发行版，旨在跨越异构系统，包括企业，高性能计算（HPC），电信和云规模数据中心等系统的管理。</p>
-<p><img src="/2023/03/17/OpenBMC-0/image_V625De4u_R.png" srcset="/img/loading.gif" lazyload alt="bmc"></p>
+<p><img src="/2023/03/17/OpenBMC-0_%E7%AE%80%E4%BB%8B/image_V625De4u_R.png" srcset="/img/loading.gif" lazyload alt="bmc"></p>
 
                 
               </div>
@@ -301,6 +302,13 @@
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OpenBMC/">#OpenBMC</a>
+      
+    </div>
   
 </div>
 
@@ -311,7 +319,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>OpenBMC：1.OpenBMC简介</div>
-      <div>http://example.com/2023/03/17/OpenBMC-0/</div>
+      <div>http://example.com/2023/03/17/OpenBMC-0_简介/</div>
     </div>
     <div class="license-meta">
       
@@ -355,9 +363,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/21/OpenBmc-1_%E6%9E%84%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="">
+                      <a href="/2023/03/21/OpenBmc-1_%E6%9E%84%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="OpenBMC-1_构建开发环境">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">OpenBMC-1_构建开发环境</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
